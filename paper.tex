@@ -257,8 +257,8 @@ positive entries and $2n+2<3n$, so some row $i$ has exactly two, in columns $j$
 and $k$. Delete row $i$ and replace columns $j$ and $k$ by their sum. The result
 $C$ is doubly stochastic of order $n-1$ and has at most $2n=2(n-1)+2$ positive
 entries. It is fully indecomposable: a set of rows violating the condition above
-in $C$ violates it in $B$, after adding row $i$ if the set meets both columns
-$j$ and $k$. The permanent is linear in the new column, so
+in $C$ violates it in $B$, after adding row $i$ if, in $B$, those rows have
+positive entries in both columns $j$ and $k$. The permanent is linear in the new column, so
 $\per C=\per B(i|j)+\per B(i|k)=2\per B$. By induction,
 $\per A\ge\per B=\half\per C\ge2^{1-n}$.
 \end{proof}
