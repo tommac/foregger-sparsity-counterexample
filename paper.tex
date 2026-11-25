@@ -1,0 +1,345 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+
+\DeclareMathOperator{\per}{per}
+\newcommand{\half}{\tfrac12}
+
+\title[Sparsity is not enough]{Sparsity is not enough: Foregger's inequality fails\\
+for fully indecomposable matrices}
+\author{Tom Maciejewski}
+\address{Independent researcher, New Jersey, USA}
+\email{tommaciejewski4@gmail.com}
+\subjclass[2020]{15A15, 15B51, 05C50}
+\keywords{permanent, doubly stochastic matrix, fully indecomposable matrix,
+nearly decomposable matrix, Foregger's conjecture}
+
+\begin{document}
+
+\begin{abstract}
+A nearly decomposable matrix of order $n\ge3$ has at most $3n-3$ nonzero entries,
+and if it is doubly stochastic then its permanent is at least $2^{1-n}$. This
+is Foregger's inequality, proved by Lavi in 2026. Is it the sparsity of these
+matrices that matters, or their minimality? We show that sparsity is not
+enough. There is a fully indecomposable doubly stochastic $6\times6$ matrix
+with $15=3n-3$ positive entries, all equal to $\frac14$, $\frac38$ or
+$\frac12$, whose permanent is $\frac{15}{512}<\frac{16}{512}$; checking this
+takes three lines, and no smaller order allows it. The threshold is exact: a
+fully indecomposable doubly stochastic matrix with at most $2n+2$ positive
+entries satisfies the inequality, and in every order $n\ge3$ the same
+construction gives one with $2n+3$ positive entries that does not. Chaining the
+construction gives matrices within the $3n-3$ budget whose permanents fall below
+$2^{1-n}$ by a factor that is exponentially small in $n$.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+A $(0,1)$-matrix of order $n\ge2$ is \emph{fully indecomposable} if it has no
+$p\times(n-p)$ zero submatrix with $1\le p\le n-1$, and \emph{nearly
+decomposable} if it is fully indecomposable and stops being so whenever one of
+its $1$s is replaced by $0$. A nonnegative matrix has either property when its
+zero pattern does. Let $\Omega_n$ be the set of doubly stochastic matrices of
+order $n$.
+
+Foregger~\cite{Foregger} conjectured in 1980 that every nearly decomposable
+$A\in\Omega_n$ satisfies
+\begin{equation}\label{eq:foregger}
+  \per A\ \ge\ 2^{1-n},
+\end{equation}
+with equality only for the matrices $P\cdot\half(I+C_n)\cdot Q$, where $C_n$
+is the permutation matrix of an $n$-cycle and $P,Q$ are permutation matrices.
+Lavi~\cite{Lavi} proved this in 2026.
+
+By a theorem of Minc~\cite{Minc}, a nearly decomposable matrix of order
+$n\ge3$ has at most $3n-3$ positive entries. So~\eqref{eq:foregger} is a
+statement about very sparse doubly stochastic matrices, and it is natural to
+ask whether the sparsity alone is responsible.
+The following question was raised by T.~H. Foregger in conversation with the author.
+
+\begin{quote}
+\emph{Does every $A\in\Omega_n$ with at most $3n-3$ positive entries satisfy
+$\per A\ge2^{1-n}$?}
+\end{quote}
+
+Without a bound on the number of entries the answer is of course no. The
+$3\times3$ matrix with all entries $\frac13$ has permanent
+$\frac29<\frac14$, and in general the van der Waerden minimum $n!/n^n$ is far
+below $2^{1-n}$. But that matrix has $9$ positive entries where only
+$3n-3=6$ are allowed, and it is not obvious that a matrix within the budget
+can afford a dense block. It can, as soon as $n=6$.
+
+\begin{theorem}\label{thm:six}
+The matrix
+\[
+  A=\frac18\begin{pmatrix}
+   3&3&2&0&0&0\\
+   3&3&2&0&0&0\\
+   2&2&0&4&0&0\\
+   0&0&0&4&4&0\\
+   0&0&0&0&4&4\\
+   0&0&4&0&0&4
+  \end{pmatrix}
+\]
+is doubly stochastic and fully indecomposable, has $15=3\cdot6-3$ positive
+entries, and satisfies
+\[
+  \per A=\frac{15}{512}<\frac{16}{512}=2^{1-6}.
+\]
+\end{theorem}
+
+\begin{proof}[Verification of the permanent]
+Consider the permutations that contribute to $\per(8A)$. Those that use
+position $(4,4)$ must also use $(5,5)$ and $(6,6)$. Together they contribute
+$4^3\cdot48$, where $48$ is the permanent of the leading $3\times3$ block. The
+others use $(4,5)$, hence $(5,6)$, $(6,3)$ and $(3,4)$. They contribute
+$4^4\cdot18$, where $18$ is the permanent of the leading $2\times2$ block. So
+$\per(8A)=3072+4608=7680$, whereas $8^6\cdot2^{-5}=8192$. The other properties
+are proved in Lemma~\ref{lem:necklace}.
+\end{proof}
+
+The same idea works in every order $n\ge3$ with only $2n+3$ positive entries,
+which is within the budget $3n-3$ exactly when $n\ge6$.
+
+\begin{theorem}\label{thm:all}
+For every $n\ge3$ there is a fully indecomposable $A\in\Omega_n$ with exactly
+$2n+3$ positive entries, each equal to $\frac14$, $\frac38$ or $\frac12$, such
+that
+\[
+  \per A=\frac{15}{16}\cdot2^{1-n}.
+\]
+\end{theorem}
+
+Chaining several dense blocks makes the failure exponential.
+
+\begin{theorem}\label{thm:exp}
+For every $n=4m$ with $m\ge3$ there is a fully indecomposable $A\in\Omega_n$
+with $\frac{11}{4}n\le3n-3$ positive entries such that
+\[
+  \per A<(0.978)^{n}\cdot2^{1-n}.
+\]
+\end{theorem}
+
+None of these matrices is nearly decomposable, in agreement with Lavi's
+theorem. So in Foregger's inequality the hypothesis ``nearly decomposable''
+cannot be weakened to ``fully indecomposable with at most $3n-3$ positive
+entries''.
+
+So $2n+3$ positive entries are too many. This is the exact threshold: a fully
+indecomposable matrix has at least $2n$ positive entries, and with at most two
+more the inequality survives.
+
+\begin{proposition}\label{prop:threshold}
+Every fully indecomposable $A\in\Omega_n$ with at most $2n+2$ positive entries
+satisfies $\per A\ge2^{1-n}$.
+\end{proposition}
+
+The equality case for at most $2n+1$ positive entries is determined
+in~\cite{FirstGap}. It follows from Proposition~\ref{prop:threshold} that the
+order $6$ in Theorem~\ref{thm:six} cannot be lowered (Remark~\ref{rem:small}).
+
+\section{The construction}
+
+Fix integers $m\ge1$ and $k\ge0$ and a real number $0<q<1$, and put
+\[
+  a=\frac{1+q}{4},\qquad c=\frac{1-q}{2},\qquad
+  B=\begin{pmatrix}a&a&c\\a&a&c\\c&c&0\end{pmatrix}.
+\]
+The row and column sums of $B$ are $1,1,1-q$. The matrix $N=N(m,k,q)$ has
+order $n=m(k+3)$. Its rows and columns are divided into $m$ consecutive groups
+of size $k+3$. In each group the first three rows and columns carry a copy of
+$B$, called a \emph{block}, and the remaining $k$ rows and columns are called
+\emph{ear} rows and columns. Besides the blocks, the positive entries of $N$
+are the following, for each group:
+\begin{itemize}
+\item $1-q$ in position ($i$th ear row, $i$th ear column), for $1\le i\le k$;
+\item $q$ in position ($i$th ear row, $(i+1)$st ear column), for $1\le i<k$;
+\item $q$ in position (third block row, first ear column);
+\item $q$ in position ($k$th ear row, third column of the block of the next
+group), where the group after the last is the first.
+\end{itemize}
+If $k=0$, the last two items are replaced by one entry $q$ in position (third
+block row, third column of the block of the next group). So each group has a
+path, its \emph{ear}, that leaves the third row of its block, runs through its
+ear columns and rows, and ends in the third column of the next block. The matrix
+of Theorem~\ref{thm:six} is $N(1,3,\half)$.
+
+\begin{lemma}\label{lem:necklace}
+The matrix $N=N(m,k,q)$ is doubly stochastic and fully indecomposable, it is
+not nearly decomposable, it has $m(2k+9)=2n+3m$ positive entries, and
+\begin{equation}\label{eq:per}
+  \per N=\Bigl(\frac{q^{k+1}(1+q)^2}{8}\Bigr)^{m}
+        +\Bigl(\frac{(1-q)^{k+2}(1+q)}{4}\Bigr)^{m}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The first two rows of a block sum to $2a+c=1$, the third to $2c+q=1$, and an
+ear row to $(1-q)+q=1$. The columns are the same, the third column of a block
+receiving its $q$ from the previous ear. Each block has $8$ positive entries
+and each ear $2k+1$.
+
+For the permanent, consider a permutation all of whose entries in $N$ are
+positive. Look at one ear. Its first column is covered either by the first ear
+row or by the third block row. In the first case the second ear column must be
+covered by the second ear row, and so on: all ear rows use their entries
+$1-q$, and we call the ear \emph{idle}. In the second case the first ear row
+must use its entry $q$, and so on: the ear uses all its $k+1$ entries $q$,
+including the one in the third column of the next block, and we call it
+\emph{active}. If $k=0$, the ear is active when its single entry $q$ is used and
+idle otherwise.
+
+If the ear leaving a block is active, the third row of the block is used up,
+so the first two columns of the block are covered by its first two rows, and
+its third column must be covered by the ear arriving at the block. That ear is
+therefore active too. Going around the groups, either all ears are active or
+all are idle. If all are active, each group contributes $q^{k+1}$ times the
+permanent of the leading $2\times2$ part of $B$, which is $2a^2=(1+q)^2/8$. If
+all are idle, each group contributes $(1-q)^{k}$ times
+$\per B=4ac^2=(1+q)(1-q)^2/4$. This proves~\eqref{eq:per}.
+
+A $(0,1)$-matrix of order $n\ge2$ is fully indecomposable if and only if its
+bipartite graph is connected and every positive entry lies on a permutation
+all of whose entries are positive \cite[Section~4.2]{BrualdiRyser}. The graph
+of $N$ is connected. The permutations with all ears active cover every entry
+$q$ and the four entries $a$ of each block, and those with all ears idle cover
+every entry $1-q$ and every positive entry of each block. So $N$ is fully
+indecomposable.
+
+Finally, as T.~H. Foregger pointed out to the author, $N$ is not nearly
+decomposable because each block contains a positive $2\times2$ submatrix: a
+nearly decomposable matrix of order at least $3$ has none~\cite[Lemma~2.3]{Lavi}.
+\end{proof}
+
+\begin{proof}[Proof of Theorems~\ref{thm:six} and~\ref{thm:all}]
+Take $m=1$, $q=\half$ and $k=n-3\ge0$. Then $a=\frac38$, $c=\frac14$, and the
+number of positive entries is $2n+3$. By~\eqref{eq:per},
+\[
+  \per N=\frac{9}{32}\cdot2^{-(k+1)}+\frac{3}{8}\cdot2^{-(k+2)}
+        =\frac{15}{64}\cdot2^{-k}=\frac{15}{16}\cdot2^{1-n}.\qedhere
+\]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:exp}]
+Take $k=1$ and $q=\frac{6}{13}$, so that $n=4m$ and $N$ has $11m$ positive
+entries, which is at most $3n-3$ when $m\ge3$. By~\eqref{eq:per},
+\[
+  2^{n-1}\per N=\frac{\alpha^m+\beta^m}{2},\qquad
+  \alpha=2q^2(1+q)^2=\frac{25992}{28561},\quad
+  \beta=4(1-q)^3(1+q)=\frac{26068}{28561}.
+\]
+Since $\alpha<\beta$ and $\beta^{1/4}<0.978$, we get
+$2^{n-1}\per N<\beta^{m}<(0.978)^{n}$.
+\end{proof}
+
+\section{The threshold}
+
+A matrix of order $m\ge2$ is fully indecomposable if and only if every set of
+$s$ rows, $0<s<m$, has positive entries in at least $s+1$ columns.
+
+\begin{proof}[Proof of Proposition~\ref{prop:threshold}]
+We use induction on $n$. For $n=2$ the permanent is $t^2+(1-t)^2\ge\half$. Let
+$n\ge3$, and let $B$ minimize the permanent among the doubly stochastic matrices
+that vanish wherever $A$ does. By Foregger's first
+lemma~\cite[Lemma~1]{Foregger} (see~\cite[Lemma~2.1]{Lavi}), $B$ is fully
+indecomposable and $\per B(i|j)=\per B$ whenever $b_{ij}>0$, where $B(i|j)$ is
+$B$ with row $i$ and column $j$ deleted. Every row of $B$ has at least two
+positive entries and $2n+2<3n$, so some row $i$ has exactly two, in columns $j$
+and $k$. Delete row $i$ and replace columns $j$ and $k$ by their sum. The result
+$C$ is doubly stochastic of order $n-1$ and has at most $2n=2(n-1)+2$ positive
+entries. It is fully indecomposable: a set of rows violating the condition above
+in $C$ violates it in $B$, after adding row $i$ if the set meets both columns
+$j$ and $k$. The permanent is linear in the new column, so
+$\per C=\per B(i|j)+\per B(i|k)=2\per B$. By induction,
+$\per A\ge\per B=\half\per C\ge2^{1-n}$.
+\end{proof}
+
+\section{Remarks}
+
+\begin{remark}[Why it works]
+The block $B$ is close to the $3\times3$ matrix with all entries $\frac13$,
+whose permanent is below $2^{1-3}$. A dense block costs three entries more
+than the budget allows, and an ear of $k$ rows earns back $k$ of them, because
+each of its rows has only two entries where the budget allows three. The ear
+is cheap in permanent as well: it multiplies the permanent by about $2^{-k}$,
+exactly as a path does in the extremal matrix $\half(I+C_n)$.
+\end{remark}
+
+\begin{remark}[Constants]
+The value $q=\half$ was chosen for simple entries. For $n=6$ the best choice
+in~\eqref{eq:per} is $q\approx0.4723$, which gives
+$2^{5}\per N\approx0.9134$. In Theorem~\ref{thm:exp} the rate $0.978$ is not
+optimal either. On the other hand it cannot be improved beyond $\frac89$: by
+Gurvits's inequality \cite{Gurvits,LaurentSchrijver}, a doubly stochastic
+matrix with $\Delta_j$ positive entries in column $j$ has
+$\per A\ge\prod_j g(\Delta_j)$, where
+$g(d)=\bigl(\frac{d-1}{d}\bigr)^{d-1}$. The numbers $-\log g(d)$ form an
+increasing concave sequence, so if the $\Delta_j$ add up to less than $3n$
+then $\per A\ge g(3)^n=(\frac49)^n$, that is,
+$2^{n-1}\per A\ge\half(\frac89)^n$.
+\end{remark}
+
+\begin{remark}[Small orders]\label{rem:small}
+Theorem~\ref{thm:six} has the smallest possible order among counterexamples
+within the budget $3n-3$. A doubly stochastic matrix that is not fully
+indecomposable is, up to permutations, a direct sum of smaller matrices, each of
+order $1$ or fully indecomposable, and for $n\le5$ van der Waerden's bound on
+the summands shows that it satisfies~\eqref{eq:foregger}. If $A$ is fully
+indecomposable and $n\le5$, the budget $3n-3$ is at most $2n+2$, and
+Proposition~\ref{prop:threshold} applies.
+\end{remark}
+
+\subsection*{Verification}
+The ancillary script \texttt{verify.py} checks in exact arithmetic
+Theorem~\ref{thm:six}, Theorem~\ref{thm:all} for $3\le n\le11$,
+Theorem~\ref{thm:exp} for $m=3,4,5$, and Lemma~\ref{lem:necklace} on $40$
+instances. It also checks the constants in the remark on constants.
+
+\subsection*{Acknowledgment}
+I thank T.~H. Foregger for comments on the construction.
+
+\begin{thebibliography}{9}
+
+\bibitem{BrualdiRyser}
+R.~A. Brualdi and H.~J. Ryser, \emph{Combinatorial Matrix Theory}, Cambridge
+University Press, 1991.
+
+\bibitem{Foregger}
+T.~H. Foregger, On the minimum value of the permanent of a nearly decomposable
+doubly stochastic matrix, \emph{Linear Algebra Appl.} \textbf{32} (1980),
+75--85.
+
+\bibitem{Gurvits}
+L.~Gurvits, Van der Waerden/Schrijver--Valiant like conjectures and stable
+(aka hyperbolic) homogeneous polynomials: one theorem for all,
+\emph{Electron. J. Combin.} \textbf{15} (2008), \#R66.
+
+\bibitem{LaurentSchrijver}
+M.~Laurent and A.~Schrijver, On Leonid Gurvits's proof for permanents,
+\emph{Amer. Math. Monthly} \textbf{117} (2010), 903--911.
+
+\bibitem{Lavi}
+Y.~Lavi, Foregger's conjecture on minimum permanents of nearly decomposable
+doubly stochastic matrices, preprint, 2026,
+\href{https://doi.org/10.5281/zenodo.24208987}{doi:10.5281/zenodo.24208987}.
+
+\bibitem{FirstGap}
+T.~Maciejewski, One entry beyond the cycle: a sharp gap in Foregger's
+inequality, preprint, 2026.
+
+\bibitem{Minc}
+H.~Minc, Nearly decomposable matrices, \emph{Linear Algebra Appl.} \textbf{5}
+(1972), 181--187.
+
+\end{thebibliography}
+
+\end{document}

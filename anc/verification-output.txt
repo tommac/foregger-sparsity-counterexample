@@ -1,0 +1,9 @@
+$ python3 anc/verify.py
+PASS  Theorem 1: the 6x6 matrix (15 entries, per = 15/512 < 16/512)
+PASS  Theorem 2: n = 3..11, 2n+3 entries, per = (15/16) 2^(1-n)
+PASS  Lemma: per N(m,k,q) = through^m + idle^m on 40 instances
+      m = 3, n = 12: 2^(n-1) per = 0.757016 (FI, not ND)
+      m = 4, n = 16: 2^(n-1) per = 0.689936 (FI, not ND)
+      m = 5, n = 20: 2^(n-1) per = 0.628801 (FI, not ND)
+PASS  Theorem 3: q = 6/13, 2^(n-1) per < (26068/28561)^(n/4)
+PASS  Remark: for n = 6 the best q is about 0.4723, 2^5 per = 0.9134; g(3) = 4/9 gives the rate 8/9
