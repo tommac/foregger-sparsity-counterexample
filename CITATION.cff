@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite the paper."
 title: "Sparsity is not enough: Foregger's inequality fails for fully indecomposable matrices"
-version: "1.0.0"
+version: "1.0.1"
 repository-code: "https://github.com/tommac/foregger-sparsity-counterexample"
 license: CC-BY-4.0
 authors:
