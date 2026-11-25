@@ -1,6 +1,6 @@
 # Sparsity is not enough: Foregger's inequality fails for fully indecomposable matrices
 
-**Tom Maciejewski** · Preprint, 2026 · [Read the paper (PDF)](paper.pdf)
+**Tom Maciejewski** · Preprint, 2026 · [Read the paper (PDF)](paper.pdf) · [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24543258.svg)](https://doi.org/10.5281/zenodo.24543258)
 
 ## Abstract
 
@@ -29,7 +29,7 @@ python3 anc/verify.py
   title  = {Sparsity is not enough: {Foregger}'s inequality fails for fully indecomposable matrices},
   year   = {2026},
   note   = {Preprint},
-  url    = {https://github.com/tommac/foregger-sparsity-counterexample},
+  doi    = {10.5281/zenodo.24543258},
 }
 ```
 
